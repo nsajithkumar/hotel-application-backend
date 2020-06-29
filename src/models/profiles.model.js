@@ -6,12 +6,12 @@ const profileSchema = new mongoose.Schema({
     username: String,
     mobileNumber: Number,
     emailId: String,
-    role: String,
+    role: Number,
     password: String,
     createdOn: String,
     updatedOn: String
 });
 
-const Profile = mongoose.model("Profile", profileSchema);
+const Profile = mongoose.model("profile", profileSchema);
 
 module.exports = Profile;
