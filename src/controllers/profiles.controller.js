@@ -41,7 +41,7 @@ exports.create = (req, res) => {
 };
 
 exports.readAll = (req, res) => {
-    Profile.find({}, ['username', 'mobileNumber', 'emailId', 'createdOn'], (err, profiles) => {
+    Profile.find({}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profiles) => {
         if(err) {
             res.send({status: 500, message: "Cannot Fetch Profiles! Please Try Again Later.", error: err});
         } else {
@@ -59,7 +59,7 @@ exports.read = (req, res) => {
     let role = req.body.role;
 
     if(typeof(profileId) !== "undefined") {
-        Profile.findOne({_id: profileId}, ['username', 'mobileNumber', 'emailId', 'createdOn'], (err, profile) => {
+        Profile.findOne({_id: profileId}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
             if(err) {
                 res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
             } else {

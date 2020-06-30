@@ -42,10 +42,10 @@ Data : {
 Url: https://v7backend.herokuapp.com/product/create
 Type: POST
 Data : {
-	name
-	description
-	image
-	price
+	name: String
+	description: String
+	image: String
+	price: Number
 }
 
 Url: https://v7backend.herokuapp.com/product/read
@@ -121,6 +121,8 @@ Type: POST
 Data : {
 	logId: String
 }
+
+// Sendmail
 
 Url: https://v7backend.herokuapp.com/sendmail
 Type: POST
