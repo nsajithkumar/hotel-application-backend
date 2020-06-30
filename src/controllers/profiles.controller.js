@@ -7,12 +7,14 @@ exports.create = (req, res) => {
                             dateObject.getDate() + " " + dateObject.getHours() + ":" + dateObject.getMinutes() +
                             ":" + dateObject.getSeconds();
 
+	let password = MD5(req.body.password)	
+
     let profile = {
         username: req.body.username,
         mobileNumber: req.body.mobileNumber,
         emailId: req.body.emailId,
         role: req.body.role,
-        password: MD5(req.body.password),
+        password: password,
         createdOn: currentDateTime,
         updatedOn: currentDateTime
     };
@@ -61,8 +63,8 @@ exports.read = (req, res) => {
             if(err) {
                 res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
             } else {
-                if(product === null) {
-                    res.send({status: 404, message: "No Product Found"});
+                if(profile === null) {
+                    res.send({status: 404, message: "No Profile Found"});
                 } else {
                     res.send({status: 200, message: "Fetched Successfully!", profile: profile});
                 }
@@ -85,18 +87,25 @@ exports.read = (req, res) => {
 
 exports.update = (req, res) => {
     let profileId = req.body.profileId;
+    let password = req.body.password;
 
     let dateObject = new Date();
     let currentDateTime = dateObject.getFullYear() + "-" + (parseInt(dateObject.getMonth()) + 1) + "-" + 
                             dateObject.getDate() + " " + dateObject.getHours() + ":" + dateObject.getMinutes() +
                             ":" + dateObject.getSeconds();
 
-    let profile = {
-        username: req.body.username,
-        mobileNumber: req.body.mobileNumber,
-        password: req.body.password,
-        updatedOn: currentDateTime
-    };
+    if(typeof(password) !== "undefined") {
+        var profile = {
+            password: MD5(password),
+            updatedOn: currentDateTime
+        };
+    } else {
+        var profile = {
+            username: req.body.username,
+            mobileNumber: req.body.mobileNumber,
+            updatedOn: currentDateTime
+        };
+    }
 
     Profile.updateOne({_id: profileId}, profile, (err) => {
         if(err) {

@@ -17,6 +17,7 @@ Url: https://v7backend.herokuapp.com/profile/read
 Type: POST
 Data : {
 	profileId: String,
+		(or)
 	role: Number
 }
 
@@ -32,6 +33,7 @@ Data : {
 	profileId: String,
 	username: String,
 	mobileNumber: Number,
+		(or)
 	password: String
 }
 
@@ -90,6 +92,7 @@ Url: https://v7backend.herokuapp.com/order/read
 Type: POST
 Data : {
 	orderId: String,
+		(or)
 	customerId: String
 }
 
@@ -109,6 +112,7 @@ Url: https://v7backend.herokuapp.com/log/read
 Type: POST
 Data : {
 	logId: String,
+		(or)
 	customerId: String
 }
 
@@ -116,4 +120,11 @@ Url: https://v7backend.herokuapp.com/log/update
 Type: POST
 Data : {
 	logId: String
+}
+
+Url: https://v7backend.herokuapp.com/sendmail
+Type: POST
+Data : {
+	toAddress: String,
+	message: String
 }
