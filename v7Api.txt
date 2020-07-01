@@ -16,7 +16,7 @@ Type: GET
 Url: https://v7backend.herokuapp.com/profile/read
 Type: POST
 Data : {
-	profileId: String,
+	profileId: String, / password: String
 		(or)
 	role: Number
 }

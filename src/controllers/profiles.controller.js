@@ -19,7 +19,7 @@ exports.create = (req, res) => {
         updatedOn: currentDateTime
     };
 
-    Profile.find({emailId: profile.emailId}, (err, result) => {
+    Profile.find({emailId: profile.emailId, mobileNumber: req.body.mobileNumber}, (err, result) => {
         if(err) {
             res.send({status: 500, message: "Not Registered! Please Try Again Later."});
         } else {
@@ -57,6 +57,10 @@ exports.readAll = (req, res) => {
 exports.read = (req, res) => {
     let profileId = req.body.profileId;
     let role = req.body.role;
+    let emailId = req.body.emailId;
+    if(typeof(req.body.password) !== "undefined"){
+	let password = MD5(req.body.password);
+    }
 
     if(typeof(profileId) !== "undefined") {
         Profile.findOne({_id: profileId}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
@@ -70,8 +74,32 @@ exports.read = (req, res) => {
                 }
             }
         });
+    } else if(typeof(emailId) !== "undefined") {
+        Profile.findOne({emailId: emailId}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
+            if(err) {
+                res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
+            } else {
+                if(profile === null) {
+                    res.send({status: 404, message: "No Profile Found"});
+                } else {
+                    res.send({status: 200, message: "Fetched Successfully!", profile: profile});
+                }
+            }
+        });
+    } else if(typeof(password) !== "undefined") {
+        Profile.findOne({emailId: emailId, password: password}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
+            if(err) {
+                res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
+            } else {
+                if(profile === null) {
+                    res.send({status: 404, message: "No Profile Found"});
+                } else {
+                    res.send({status: 200, message: "Fetched Successfully!", profile: profile});
+                }
+            }
+        });
     } else if(typeof(role) !== "undefined") {
-        Profile.find({role: role}, ['username', 'mobileNumber', 'emailId', 'createdOn'], (err, profiles) => {
+        Profile.find({role: role}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profiles) => {
             if(err) {
                 res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
             } else {
