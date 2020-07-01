@@ -7,7 +7,7 @@ exports.create = (req, res) => {
                             dateObject.getDate() + " " + dateObject.getHours() + ":" + dateObject.getMinutes() +
                             ":" + dateObject.getSeconds();
 
-	let password = MD5(req.body.password)	
+    let password = MD5(req.body.password)	
 
     let profile = {
         username: req.body.username,
@@ -41,7 +41,7 @@ exports.create = (req, res) => {
 };
 
 exports.readAll = (req, res) => {
-    Profile.find({}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profiles) => {
+    Profile.find({}, ['username', 'mobileNumber', 'emailId', 'role', 'createdOn', 'updatedOn'], (err, profiles) => {
         if(err) {
             res.send({status: 500, message: "Cannot Fetch Profiles! Please Try Again Later.", error: err});
         } else {
@@ -59,23 +59,11 @@ exports.read = (req, res) => {
     let role = req.body.role;
     let emailId = req.body.emailId;
     if(typeof(req.body.password) !== "undefined"){
-	let password = MD5(req.body.password);
+	var password = MD5(req.body.password);
     }
 
     if(typeof(profileId) !== "undefined") {
-        Profile.findOne({_id: profileId}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
-            if(err) {
-                res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
-            } else {
-                if(profile === null) {
-                    res.send({status: 404, message: "No Profile Found"});
-                } else {
-                    res.send({status: 200, message: "Fetched Successfully!", profile: profile});
-                }
-            }
-        });
-    } else if(typeof(emailId) !== "undefined") {
-        Profile.findOne({emailId: emailId}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
+        Profile.findOne({_id: profileId}, ['username', 'mobileNumber', 'role', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
             if(err) {
                 res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
             } else {
@@ -87,7 +75,19 @@ exports.read = (req, res) => {
             }
         });
     } else if(typeof(password) !== "undefined") {
-        Profile.findOne({emailId: emailId, password: password}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
+        Profile.findOne({emailId: emailId, password: password}, ['username', 'mobileNumber', 'role', 'emailId', 'createdOn', 'updatedOn'], (err, profile) => {
+            if(err) {
+                res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
+            } else {
+                if(profile === null) {
+                    res.send({status: 404, message: "No Profile Found"});
+                } else {
+                    res.send({status: 200, message: "Fetched Successfully!", profile: profile});
+                }
+            }
+        });
+    } else if(typeof(emailId) !== "undefined") {
+        Profile.findOne({emailId: emailId}, ['username', 'mobileNumber', 'emailId', 'role', 'createdOn', 'updatedOn'], (err, profile) => {
             if(err) {
                 res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
             } else {
@@ -99,7 +99,7 @@ exports.read = (req, res) => {
             }
         });
     } else if(typeof(role) !== "undefined") {
-        Profile.find({role: role}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'updatedOn'], (err, profiles) => {
+        Profile.find({role: role}, ['username', 'mobileNumber', 'emailId', 'createdOn', 'role', 'updatedOn'], (err, profiles) => {
             if(err) {
                 res.send({status: 500, message: "Cannot Fetch Profile! Please Try Again Later.", error: err});
             } else {

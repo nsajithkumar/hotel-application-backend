@@ -1,4 +1,9 @@
 const products = require("../controllers/products.controller");
+const multipart = require('connect-multiparty');
+
+const multipartMiddleware = multipart({
+    uploadDir: './uploads'
+});
 
 module.exports = (app) => {
 
@@ -10,7 +15,7 @@ module.exports = (app) => {
         next();
     });
   
-    app.post("/product/create", products.create);
+    app.post("/product/create", multipartMiddleware, products.create);
 
     app.get("/product/read", products.readAll);
 

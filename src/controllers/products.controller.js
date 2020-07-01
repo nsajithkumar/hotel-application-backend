@@ -6,10 +6,11 @@ exports.create = (req, res) => {
                             dateObject.getDate() + " " + dateObject.getHours() + ":" + dateObject.getMinutes() +
                             ":" + dateObject.getSeconds();
 
+                            console.log(req.body);
     let product = {
         name: req.body.name,
         description: req.body.description,
-        image: req.body.image,
+        image: req.body.image.name,
         price: req.body.price,
         createdOn: currentDateTime,
         updatedOn: currentDateTime
