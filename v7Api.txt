@@ -1,6 +1,6 @@
 // Profiles
 
-Url: https://v7backend.herokuapp.com/profile/create
+Url: https://hotel-application-backend.herokuapp.com/profile/create
 Type: POST
 Data : {
 	username: String,
@@ -10,10 +10,10 @@ Data : {
 	password: String
 }
 
-Url: https://v7backend.herokuapp.com/profile/read
+Url: https://hotel-application-backend.herokuapp.com/profile/read
 Type: GET
 
-Url: https://v7backend.herokuapp.com/profile/read
+Url: https://hotel-application-backend.herokuapp.com/profile/read
 Type: POST
 Data : {
 	profileId: String, / password: String
@@ -21,13 +21,13 @@ Data : {
 	role: Number
 }
 
-Url: https://v7backend.herokuapp.com/profile/delete
+Url: https://hotel-application-backend.herokuapp.com/profile/delete
 Type: POST
 Data : {
 	profileId: String
 }
 
-Url: https://v7backend.herokuapp.com/profile/update
+Url: https://hotel-application-backend.herokuapp.com/profile/update
 Type: POST
 Data : {
 	profileId: String,
@@ -39,7 +39,7 @@ Data : {
 
 // Products
 
-Url: https://v7backend.herokuapp.com/product/create
+Url: https://hotel-application-backend.herokuapp.com/product/create
 Type: POST
 Data : {
 	name: String
@@ -48,22 +48,22 @@ Data : {
 	price: Number
 }
 
-Url: https://v7backend.herokuapp.com/product/read
+Url: https://hotel-application-backend.herokuapp.com/product/read
 Type: GET
 
-Url: https://v7backend.herokuapp.com/product/read
+Url: https://hotel-application-backend.herokuapp.com/product/read
 Type: POST
 Data : {
 	productId: String
 }
 
-Url: https://v7backend.herokuapp.com/product/delete
+Url: https://hotel-application-backend.herokuapp.com/product/delete
 Type: POST
 Data : {
 	productId: String
 }
 
-Url: https://v7backend.herokuapp.com/product/update
+Url: https://hotel-application-backend.herokuapp.com/product/update
 Type: POST
 Data : {
 	productId: String,
@@ -75,7 +75,7 @@ Data : {
 
 // Orders
 
-Url: https://v7backend.herokuapp.com/order/create
+Url: https://hotel-application-backend.herokuapp.com/order/create
 Type: POST
 Data : {
 	customerId: String,
@@ -85,10 +85,10 @@ Data : {
 	productAmount: Array
 }
 
-Url: https://v7backend.herokuapp.com/order/read
+Url: https://hotel-application-backend.herokuapp.com/order/read
 Type: GET
 
-Url: https://v7backend.herokuapp.com/order/read
+Url: https://hotel-application-backend.herokuapp.com/order/read
 Type: POST
 Data : {
 	orderId: String,
@@ -98,17 +98,17 @@ Data : {
 
 // Logs
 
-Url: https://v7backend.herokuapp.com/log/create
+Url: https://hotel-application-backend.herokuapp.com/log/create
 Type: POST
 Data : {
 	customerId: String,
 	customerName: String
 }
 
-Url: https://v7backend.herokuapp.com/log/read
+Url: https://hotel-application-backend.herokuapp.com/log/read
 Type: GET
 
-Url: https://v7backend.herokuapp.com/log/read
+Url: https://hotel-application-backend.herokuapp.com/log/read
 Type: POST
 Data : {
 	logId: String,
@@ -116,7 +116,7 @@ Data : {
 	customerId: String
 }
 
-Url: https://v7backend.herokuapp.com/log/update
+Url: https://hotel-application-backend.herokuapp.com/log/update
 Type: POST
 Data : {
 	logId: String
@@ -124,7 +124,7 @@ Data : {
 
 // Sendmail
 
-Url: https://v7backend.herokuapp.com/sendmail
+Url: https://hotel-application-backend.herokuapp.com/sendmail
 Type: POST
 Data : {
 	toAddress: String,
